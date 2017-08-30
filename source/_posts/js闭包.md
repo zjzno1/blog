@@ -10,10 +10,9 @@ js闭包，在我的理解来说主要就是在函数外部读取函数内部的
 		function b() {
 			console.log(n)
 		}
-		return ;
+		return b();
 	}
-	var c = a();
-	c();
+	a();
 可以在console中看到打印出的666
 
 这个是什么原理呢？
