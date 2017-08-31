@@ -15,3 +15,50 @@ obj.apply(thisObj, [arg1, arg2, ...]);
 唯一区别是apply接受的是数组参数，call接受的是连续参数。所以当参数固定时可以使用call，当参数不固定时使用apply。
 
 举个栗子：
+	
+	function add(j, k){
+	    return j+k;
+	}
+
+	function sub(j, k){
+	    return j-k;
+	}
+
+	dd(5,3); //8
+	add.call(sub, 5, 3); //8
+	add.apply(sub, [5, 3]); //8
+
+	sub(5, 3); //2
+	sub.call(add, 5, 3); //2
+	sub.apply(add, [5, 3]); //2
+
+调用原生对象的方法
+
+	var a = {0:1, 1:"zjz", length: 2}; 
+	a.slice(); //TypeError: a.slice is not a function
+	Array.prototype.slice.call(a);//[1, "zjz"]
+
+实现继承
+
+	var Parent = function(){
+	    this.name = "zjz";
+	    this.age = 22;
+	}
+	var child = {};
+	console.log(child);//Object {} ,空对象
+	Parent.call(child);
+	console.log(child); //Object {name: "zjz", age: 24}
+
+#### bind的使用
+
+	obj.bind(thisObj, arg1, arg2, ...);
+
+把obj绑定到thisObj，这时候thisObj具备了obj的属性和方法。与call和apply不同的是，bind绑定后不会立即执行。
+
+同样是add()和sub()：
+
+	add.bind(sub, 5, 3); //不再返回8
+	add.bind(sub, 5, 3)(); //8
+
+如果bind的第一个参数是null或者undefined，等于将this绑定到全局对象。
+
