@@ -32,3 +32,32 @@ tags:
 	// 12
 
 这是add()中的形参x表示接收到的第一个参数，也就是`var increment = add(1)` 中的1和 `var addTen = add(10)` 中的10，`increment(2)`与`addTen(2)`中的2分别由y接收到。
+
+那么参数长度不确定呢？
+
+	var currying = function (fn) {
+	    var _args = [];
+	    return function () {
+	        if (arguments.length === 0) {
+	            return fn.apply(this, _args);
+	        }
+	        Array.prototype.push.apply(_args, [].slice.call(arguments));
+	        return arguments.callee;
+	    }
+	};
+
+	var multi=function () {
+	    var total = 0;
+	    for (var i = 0, c; c = arguments[i++];) {
+	        total += c;
+	    }
+	    return total;
+	};
+
+	var sum = currying(multi);  
+	  
+	sum(100,200)(300);
+	sum(400);
+	console.log(sum());     // 1000  （空白调用时才真正计算）
+
+

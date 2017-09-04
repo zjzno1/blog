@@ -7,8 +7,8 @@ tags:
 ---
 call 和 apply 都是为了改变某个函数运行时的 context 即上下文而存在的，换句话说，就是为了改变函数体内部 this 的指向。
 
-obj.call(thisObj, arg1, arg2, ...);
-obj.apply(thisObj, [arg1, arg2, ...]);
+`obj.call(thisObj, arg1, arg2, ...);`
+`obj.apply(thisObj, [arg1, arg2, ...]);`
 
 两者作用一致，都是把obj(即this)绑定到thisObj，这时候thisObj具备了obj的属性和方法。或者说thisObj『继承』了obj的属性和方法。
 
@@ -24,7 +24,7 @@ obj.apply(thisObj, [arg1, arg2, ...]);
 	    return j-k;
 	}
 
-	dd(5,3); //8
+	add(5,3); //8
 	add.call(sub, 5, 3); //8
 	add.apply(sub, [5, 3]); //8
 
@@ -50,8 +50,7 @@ obj.apply(thisObj, [arg1, arg2, ...]);
 	console.log(child); //Object {name: "zjz", age: 24}
 
 #### bind的使用
-
-	obj.bind(thisObj, arg1, arg2, ...);
+`obj.bind(thisObj, arg1, arg2, ...);`
 
 把obj绑定到thisObj，这时候thisObj具备了obj的属性和方法。与call和apply不同的是，bind绑定后不会立即执行。
 
@@ -61,4 +60,10 @@ obj.apply(thisObj, [arg1, arg2, ...]);
 	add.bind(sub, 5, 3)(); //8
 
 如果bind的第一个参数是null或者undefined，等于将this绑定到全局对象。
+
+
+
+
+
+
 
