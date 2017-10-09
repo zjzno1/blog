@@ -29,7 +29,13 @@ tags:
 1. git clone [ssh]
 
 #### 4. 更新远程代码到本地
-1. git remote -v 查看远程仓库
-   git fetch origin master 从远程的origin仓库的master分支下载代码到本地的origin master
-   git log -p master.. origin/master 比较本地的仓库和远程参考的区别
+1. `git remote -v` 查看远程仓库
+   `git fetch origin master` 从远程的origin仓库的master分支下载代码到本地的origin master
+   `git log -p master.. origin/master` 比较本地的仓库和远程参考的区别
 
+#### 5. 拉取远程分支并创建本地分支
+
+1. `git branch -r` 查看所有远程分支
+2. `git checkout -b 本地分支名x origin/远程分支名x` 使用该方式会在本地新建分支x，并自动切换到该本地分支x  (采用此种方法建立的本地分支会和远程分支建立映射关系。)
+
+3. `git fetch origin 远程分支名x:本地分支名x` 使用该方式会在本地新建分支x，但是不会自动切换到该本地分支x，需要手动checkout。(采用此种方法建立的本地分支不会和远程分支建立映射关系)
